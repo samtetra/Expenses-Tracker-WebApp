@@ -6,13 +6,6 @@ pipeline {
     }
 
     stages {
-
-        stage('Clone Repo') {
-            steps {
-                git url: 'https://github.com/samtetra/Expenses-Tracker-WebApp.git'
-            }
-        }
-
         stage('SonarQube Scan') {
             steps {
                 withSonarQubeEnv('sonar-server') {
