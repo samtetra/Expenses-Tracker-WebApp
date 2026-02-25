@@ -3,17 +3,17 @@ pipeline {
 
     environment {
         PROJECT = "expenses-app"
+        SCANNER_HOME = tool 'sonar-scanner'
     }
 
-    stages {
-        stage('SonarQube Scan') {
-            steps {
-                withSonarQubeEnv('sonar-server') {
-                    sh """
-                    sonar-scanner \
-                    -Dsonar.projectKey=${PROJECT} \
-                    -Dsonar.sources=.
-                    """
+   stage('SonarQube Scan') {
+    steps {
+        withSonarQubeEnv('sonar-server') {
+            sh """
+            ${SCANNER_HOME}/bin/sonar-scanner \
+            -Dsonar.projectKey=${PROJECT} \
+            -Dsonar.sources=.
+            """
                 }
             }
         }
