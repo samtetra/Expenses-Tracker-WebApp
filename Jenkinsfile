@@ -14,7 +14,7 @@ pipeline {
                     sh """
                     ${SCANNER_HOME}/bin/sonar-scanner \
                     -Dsonar.projectKey=${PROJECT} \
-                    -Dsonar.sources=.
+                    -Dsonar.sources=. \
                     -Dsonar.exclusions=**/*.java
                     """
                 }
