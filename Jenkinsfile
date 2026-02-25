@@ -2,18 +2,20 @@ pipeline {
     agent any
 
     environment {
-        PROJECT = "expenses-app"
+        PROJECT = "Expenses-Tracker-WebApp"
         SCANNER_HOME = tool 'sonar-scanner'
     }
 
-   stage('SonarQube Scan') {
-    steps {
-        withSonarQubeEnv('sonar-server') {
-            sh """
-            ${SCANNER_HOME}/bin/sonar-scanner \
-            -Dsonar.projectKey=${PROJECT} \
-            -Dsonar.sources=.
-            """
+    stages {
+
+        stage('SonarQube Scan') {
+            steps {
+                withSonarQubeEnv('sonar-server') {
+                    sh """
+                    ${SCANNER_HOME}/bin/sonar-scanner \
+                    -Dsonar.projectKey=${PROJECT} \
+                    -Dsonar.sources=.
+                    """
                 }
             }
         }
